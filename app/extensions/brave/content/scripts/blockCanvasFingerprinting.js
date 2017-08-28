@@ -166,9 +166,9 @@ if (chrome.contentSettings.canvasFingerprinting == 'block') {
    * @param item special item objects
    */
   function trapInstanceMethod (item) {
-    if (!item.methodName) {
+    if (item.objName && !item.methodName) {
       chrome.webFrame.setGlobal(item.objName + ".prototype." + item.propName, reportBlock.bind(null, item.type))
-    } else {
+    } else if (item.methodName) {
       chrome.webFrame.setGlobal(item.methodName, reportBlock.bind(null, item.type))
     }
   }
