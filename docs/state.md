@@ -697,7 +697,8 @@ WindowStore
       hoverTabIndex: number, // index of the current hovered tab
       previewMode: boolean, // whether or not tab preview should be fired based on mouse idle time
       previewTabPageIndex: number, // index of the tab being previewed
-      tabPageIndex: number // index of the current tab page
+      tabPageIndex: number, // index of the current tab page
+      intersectionRatio: number // at which tab size position the tab sentinel is being intersected
     },
   },
   widevinePanelDetail: {
