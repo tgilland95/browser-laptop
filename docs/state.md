@@ -473,7 +473,6 @@ WindowStore
     audioMuted: boolean, // frame is muted
     audioPlaybackActive: boolean, // frame is playing audio
     basicAuthDetail: object,
-    breakpoint: string, // breakpoint name for current tab size, specified in app/renderer/components/styles/tab.js
     closedAtIndex: number, // index the frame was last closed at, cleared unless the frame is inside of closedFrames
     computedThemeColor: string, // CSS computed theme color from the favicon
     endtLoadTime: datetime,
