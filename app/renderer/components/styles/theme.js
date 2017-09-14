@@ -32,7 +32,7 @@
         }
       },
       private: {
-        background: 'rgba(75, 60, 110, 0.2)',
+        background: '#d9d6e0',
         color: '#4b3c6e'
       },
       content: {

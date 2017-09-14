@@ -251,8 +251,6 @@ class Tab extends React.Component {
     props.frameKey = ownProps.frameKey
     props.isPrivateTab = frame.get('isPrivate')
     props.notificationBarActive = notificationBarActive
-
-    // used in renderer
     props.frameKey = frameKey
     props.isPinnedTab = isPinned
     props.isPrivateTab = privateState.isPrivateTab(currentWindow, frameKey)
@@ -263,6 +261,7 @@ class Tab extends React.Component {
     props.partOfFullPageSet = ownProps.partOfFullPageSet
     props.showAudioTopBorder = audioState.showAudioTopBorder(currentWindow, frameKey, isPinned)
     props.centralizeTabIcons = tabUIState.centralizeTabIcons(currentWindow, frameKey, isPinned)
+    props.gradientColor = tabUIState.getTabEndIconBackgroundColor(currentWindow, frameKey)
 
     // used in other functions
     props.totalTabs = state.get('tabs').size
@@ -282,6 +281,13 @@ class Tab extends React.Component {
         ':hover': {
           color: this.props.themeColor ? getTextColorForBackground(this.props.themeColor) : 'inherit',
           background: this.props.themeColor ? this.props.themeColor : 'inherit'
+        }
+      }
+    })
+    const perPageGradient = StyleSheet.create({
+      tab_gradient: {
+        '::before': {
+          background: this.props.gradientColor
         }
       }
     })
@@ -311,6 +317,7 @@ class Tab extends React.Component {
         ref={(node) => { this.tabNode = node }}
         className={css(
           styles.tab,
+          perPageGradient.tab_gradient,
           // Windows specific style
           isWindows && styles.tab_forWindows,
           this.props.isPinnedTab && styles.tab_pinned,
@@ -373,6 +380,16 @@ const styles = StyleSheet.create({
 
     ':hover': {
       background: theme.tab.hover.background
+    },
+
+    // this enable us to have gradient text
+    '::before': {
+      content: '""',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '-webkit-fill-available',
+      height: '-webkit-fill-available'
     }
   },
 
@@ -417,6 +434,7 @@ const styles = StyleSheet.create({
   tab__identity: {
     justifyContent: 'flex-start',
     alignItems: 'center',
+    overflow: 'hidden',
     display: 'flex',
     flex: '1',
     minWidth: '0', // @see https://bugzilla.mozilla.org/show_bug.cgi?id=1108514#c5

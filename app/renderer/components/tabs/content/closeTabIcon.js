@@ -104,6 +104,7 @@ const styles = StyleSheet.create({
     backgroundRepeat: 'no-repeat',
     width: spacing.closeIconSize,
     height: spacing.closeIconSize,
+    marginRight: spacing.defaultTabMargin,
 
     ':hover': {
       filter: 'none'
