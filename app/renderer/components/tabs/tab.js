@@ -122,6 +122,8 @@ class Tab extends React.Component {
 
   onDragStart (e) {
     dnd.onDragStart(dragTypes.TAB, this.frame, e)
+    // cancel tab preview while dragging. see #10103
+    windowActions.setTabHoverState(this.props.frameKey, false, false)
   }
 
   onDragEnd (e) {
