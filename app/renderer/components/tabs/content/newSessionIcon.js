@@ -55,7 +55,7 @@ class NewSessionIcon extends React.Component {
       data-test-id='newSessionIcon'
       className={css(styles.newSession__icon, newSessionProps.newSession__indicator)}
       symbolContent={this.props.partitionNumber}
-      l10nArgs={this.props.partitionNumber}
+      l10nArgs={{partitionNumber: this.props.partitionNumber}}
       l10nId='sessionInfoTab'
     />
   }
